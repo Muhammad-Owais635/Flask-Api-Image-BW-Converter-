@@ -1,1 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Black & White Image Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #d9a7c7 0%, #fffcdc 100%);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type="file"] {
+            background: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        input[type="submit"] {
+            background: #6c5ce7;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 4px 14px rgba(108, 92, 231, 0.3);
+        }
+
+        input[type="submit"]:hover {
+            background: #4834d4;
+        }
+
+        .image-block img {
+        max-width: 680px;
+        width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        border: 4px solid white;
+        margin-top: 10px;
+    }
+        .image-container {
+        margin-top: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        gap: 40px;
+        width: 100%;
+    }
+
+    .image-block {
+        flex: 1 1 45%;
+        text-align: center;
+    }
+
+
+        .image-block {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .image-block:hover {
+            transform: scale(1.03);
+        }
+
+        .image-block h3 {
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .image-block img {
+            max-width: 320px;
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border: 4px solid white;
+        }
+
+        @media (max-width: 768px) {
+            .image-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>✨ Black & White Image Converter</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*" required>
+        <input type="submit" value="Upload & Convert">
+    </form>
+
+    {% if original_image and processed_image %}
+    <div class="image-container">
+        <div class="image-block">
+            <h3>Original Image</h3>
+            <img src="{{ url_for('static', filename=original_image) }}" alt="Original">
+        </div>
+        <div class="image-block">
+            <h3>Black & White</h3>
+            <img src="{{ url_for('static', filename=processed_image) }}" alt="Black & White">
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>
 
